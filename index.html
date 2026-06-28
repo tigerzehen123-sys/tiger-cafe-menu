@@ -1,639 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'Étoile Dorée | Premium Dining</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- Core Reset & Variables --- */
-        :root {
-            --gold: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --gold-solid: #d4af37;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-light: #f5f5f5;
-            --text-muted: #a0a0a0;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiger Cafe | Digital Menu</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
+<style>
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #bd9640; border-radius: 4px; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+scroll-behavior:smooth;
+}
 
-        /* --- Global Components --- */
-        .gold-text {
-            background: var(--gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Cinzel', serif;
-        }
+body{
+background:#0d0d0d;
+color:white;
+}
 
-        .btn-gradient {
-            background: var(--gold);
-            color: #000;
-            border: none;
-            padding: 12px 28px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(15px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 8%;
+z-index:1000;
+border-bottom:1px solid rgba(255,215,0,.2);
+}
 
-        .btn-gradient:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-        }
+.logo{
+font-size:30px;
+font-weight:700;
+color:#FFD700;
+}
 
-        section {
-            padding: 100px 5% 60px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+transition:.3s;
+font-size:15px;
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 15px auto 0;
-        }
+nav a:hover{
+color:#FFD700;
+}
 
-        /* --- Header & Navigation --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.80);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.hero{
+height:100vh;
+background:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
+.hero::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.65);
+}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+.hero-content{
+position:relative;
+z-index:2;
+}
 
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
+.hero h1{
+font-size:70px;
+color:#FFD700;
+}
 
-        nav a:hover, nav a.active {
-            color: var(--gold-solid);
-        }
+.hero p{
+margin-top:15px;
+font-size:20px;
+color:#ddd;
+}
 
-        .nav-toggle {
-            display: none;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+.btn{
+display:inline-block;
+margin-top:35px;
+padding:15px 40px;
+background:#FFD700;
+color:black;
+text-decoration:none;
+font-weight:bold;
+border-radius:40px;
+transition:.3s;
+}
 
-        /* --- Hero Section --- */
-        #home {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
-                        url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px gold;
+}
 
-        #home h1 {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
-        }
+.search-box{
+padding:80px 8% 40px;
+background:#111;
+}
 
-        #home p {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            animation: fadeInUp 1s ease 0.3s backwards;
-        }
+.search-box h2{
+text-align:center;
+margin-bottom:30px;
+color:#FFD700;
+font-size:35px;
+}
 
-        /* --- About Section --- */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        .about-img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-        }
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
+.search-box input{
+width:100%;
+padding:18px;
+font-size:18px;
+border:none;
+border-radius:12px;
+outline:none;
+background:#222;
+color:white;
+}
 
-        /* --- Menu Section --- */
-        .menu-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
+.categories{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+padding:30px;
+background:#111;
+}
 
-        .tab-btn {
-            background: transparent;
-            color: var(--text-light);
-            border: 1px solid var(--glass-border);
-            padding: 10px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
+.categories button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#1b1b1b;
+color:white;
+cursor:pointer;
+transition:.3s;
+font-size:15px;
+}
 
-        .tab-btn:hover, .tab-btn.active {
-            background: var(--gold);
-            color: #000;
-            border-color: transparent;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
-        }
+.categories button:hover{
+background:#FFD700;
+color:black;
+}
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
+.menu{
+padding:70px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
 
-        .menu-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-            transition: var(--transition);
-            display: none; /* Controlled by JS */
-        }
+.card{
+background:#181818;
+border-radius:18px;
+overflow:hidden;
+transition:.4s;
+border:1px solid #333;
+}
 
-        .menu-card.show {
-            display: block;
-            animation: scaleUp 0.4s ease forwards;
-        }
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(255,215,0,.4);
+}
 
-        .menu-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
 
-        .card-img-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
+.info{
+padding:20px;
+}
 
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
+.badge{
+display:inline-block;
+background:#FFD700;
+color:black;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+margin-bottom:10px;
+}
 
-        .menu-card:hover .card-img {
-            transform: scale(1.1);
-        }
+.info h3{
+font-size:24px;
+margin-bottom:8px;
+}
 
-        .card-body {
-            padding: 25px;
-        }
+.price{
+font-size:24px;
+color:#FFD700;
+font-weight:bold;
+margin-top:12px;
+}
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
+footer{
+padding:50px;
+text-align:center;
+background:#050505;
+color:#aaa;
+margin-top:50px;
+}
 
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+width:65px;
+height:65px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:white;
+box-shadow:0 0 20px rgba(0,0,0,.4);
+}
 
-        .card-price {
-            color: var(--gold-solid);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+@media(max-width:768px){
 
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.5;
-        }
+.hero h1{
+font-size:42px;
+}
 
-        /* --- Reviews Section --- */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .review-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-        }
-        .stars {
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-        .review-text {
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        .reviewer-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+nav{
+display:none;
+}
 
-        /* --- Opening Hours & Map Section --- */
-        .info-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-        }
-        .hours-box {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .hours-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .map-box iframe {
-            width: 100%;
-            height: 350px;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-        }
+}
 
-        /* --- Footer --- */
-        footer {
-            background: #050505;
-            border-top: 1px solid var(--glass-border);
-            padding: 40px 5%;
-            text-align: center;
-        }
-        .footer-socials {
-            margin-bottom: 20px;
-        }
-        .footer-socials a {
-            color: var(--text-muted);
-            font-size: 1.3rem;
-            margin: 0 15px;
-            transition: var(--transition);
-        }
-        .footer-socials a:hover { color: var(--gold-solid); }
-        footer p { color: var(--text-muted); font-size: 0.85rem; }
+</style>
 
-        /* --- Floating Action Buttons --- */
-        .floating-buttons {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 2000;
-        }
-
-        .float-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: var(--transition);
-        }
-
-        .float-btn:hover { transform: scale(1.1); }
-        .float-whatsapp { background-color: #25D366; }
-        .float-call { background-color: #0076ff; }
-
-        /* --- Keyframe Animations --- */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scaleUp {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            #home h1 { font-size: 3rem; }
-            .about-container, .info-container { grid-template-columns: 1fr; }
-            .about-img { height: 300px; }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: rgba(10,10,10,0.98);
-                flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: var(--transition);
-            }
-            nav ul.active { left: 0; }
-            .nav-toggle { display: block; }
-            section { padding-top: 80px; }
-        }
-    </style>
 </head>
+
 <body>
 
-    <header>
-        <a href="#home" class="logo gold-text">L'Étoile Dorée</a>
-        <div class="nav-toggle" id="nav-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#visit">Visit Us</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
 
-    <section id="home">
-        <h1 class="gold-text">An Elegant Taste of Luxury</h1>
-        <p>Crafting exceptional Culinary experiences</p>
-        <a href="#menu" class="btn-gradient">Explore Our Menu <i class="fas fa-chevron-right"></i></a>
-    </section>
+<div class="logo">🍽 Tiger Cafe</div>
 
-    <section id="about">
-        <div class="about-container">
-            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Ambience" class="about-img">
-            <div class="about-text">
-                <h2 class="section-title gold-text" style="text-align: left; margin-bottom: 20px;">Our Story</h2>
-                <p>Founded with a passion for exquisite gastronomy, L'Étoile Dorée seamlessly merges traditional cooking methods with contemporary luxury aesthetic flavors.</p>
-                <p>Every single ingredient is meticulously sourced from premium regional producers, guaranteeing unparalleled freshness and taste on every single plate we serve.</p>
-                <a href="#visit" class="btn-gradient"><i class="fas fa-map-marker-alt"></i> Find Our Location</a>
-            </div>
-        </div>
-    </section>
+<nav>
 
-    <section id="menu">
-        <h2 class="section-title gold-text">The Menu</h2>
-        
-        <div class="menu-tabs">
-            <button class="tab-btn active" data-filter="all">All</button>
-            <button class="tab-btn" data-filter="starters">Starters</button>
-            <button class="tab-btn" data-filter="maincourse">Main Course</button>
-            <button class="tab-btn" data-filter="chinese">Chinese</button>
-            <button class="tab-btn" data-filter="pizza">Pizza</button>
-            <button class="tab-btn" data-filter="burgers">Burgers</button>
-            <button class="tab-btn" data-filter="drinks">Drinks</button>
-            <button class="tab-btn" data-filter="desserts">Desserts</button>
-        </div>
+<a href="#">Home</a>
 
-        <div class="menu-grid" id="menu-grid">
-            </div>
-    </section>
+<a href="#">Menu</a>
 
-    <section id="reviews">
-        <h2 class="section-title gold-text">Guest Reviews</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="review-text">"The truffle main course was absolutely stellar. A complete masterclass in dining luxury."</p>
-                <p class="reviewer-name">- Sophia V.</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="review-text">"Stunning ambiance, exceptional cocktails, and the glassmorphism aesthetic of the menu translates completely to reality."</p>
-                <p class="reviewer-name">- Ethan R.</p>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="review-text">"The finest dessert platter I have ever enjoyed. Highly recommend the golden leaf presentation."</p>
-                <p class="reviewer-name">- Liam M.</p>
-            </div>
-        </div>
-    </section>
+<a href="#">Gallery</a>
 
-    <section id="visit">
-        <h2 class="section-title gold-text">Timing & Location</h2>
-        <div class="info-container">
-            <div class="hours-box">
-                <h3 class="gold-text" style="font-size: 1.5rem; margin-bottom: 20px;">Opening Hours</h3>
-                <div class="hours-row"><span>Monday - Friday</span><span>12:00 PM - 11:00 PM</span></div>
-                <div class="hours-row"><span>Saturday</span><span>11:00 AM - 12:00 AM</span></div>
-                <div class="hours-row"><span>Sunday</span><span>11:00 AM - 10:00 PM</span></div>
-            </div>
-            <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422934131235!2d-73.98731968459392!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2585f5517b619%3A0x8aa8d041ad40428e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
+<a href="#">Reviews</a>
 
-    <footer>
-        <div class="footer-socials">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2026 L'Étoile Dorée. Designed with luxury in mind.</p>
-    </footer>
+<a href="#">Contact</a>
 
-    <div class="floating-buttons">
-        <a href="https://wa.me/1234567890" target="_blank" class="float-btn float-whatsapp" title="WhatsApp Us">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="tel:+1234567890" class="float-btn float-call" title="Call Us Now">
-            <i class="fas fa-phone"></i>
-        </a>
-    </div>
+</nav>
 
-    <script>
-        // --- Food Menu Data ---
-        const menuItems = [
-            { id: 1, title: "Truffle Arancini", category: "starters", price: "$18", desc: "Crispy risotto balls infused with black truffle and rich melted mozzarella.", img: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&w=500&q=80" },
-            { id: 2, title: "Wagyu Ribeye Steak", category: "maincourse", price: "$75", desc: "A5 Grade Wagyu accompanied by smoked herb butter and asparagus roasted to perfection.", img: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&w=500&q=80" },
-            { id: 3, title: "Imperial Dim Sum", category: "chinese", price: "$22", desc: "Delicately handcrafted translucent dumplings stuffed with fresh lobster meat.", img: "https://images.unsplash.com/photo-1496116211217-41af89634433?auto=format&fit=crop&w=500&q=80" },
-            { id: 4, title: "The Gold Leaf Pizza", category: "pizza", price: "$32", desc: "Prosciutto di Parma, fresh burrata, wild figs, finished beautifully with 24k gold leaf flakes.", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" },
-            { id: 5, title: "Signature Truffle Burger", category: "burgers", price: "$26", desc: "Dry-aged custom beef blend, melted brie cheese, and house-made truffle aioli paste.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
-            { id: 6, title: "Smoked Old Fashioned", category: "drinks", price: "$19", desc: "Premium bourbon, hand-pressed bitters, infused under hickory wood smoke plumes.", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=80" },
-            { id: 7, title: "Deconstructed Tiramisu", category: "desserts", price: "$16", desc: "Luxurious espresso-soaked ladyfingers inside rich whipped sweet mascarpone foam.", img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=80" }
-        ];
+</header>
 
-        // --- Generate Food Cards Dynamically ---
-        const menuGrid = document.getElementById('menu-grid');
-        
-        function displayMenu() {
-            menuGrid.innerHTML = menuItems.map(item => `
-                <div class="menu-card show" data-category="${item.category}">
-                    <div class="card-img-container">
-                        <img src="${item.img}" alt="${item.title}" class="card-img" loading="lazy">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header">
-                            <h3 class="card-title">${item.title}</h3>
-                            <span class="card-price">${item.price}</span>
-                        </div>
-                        <p class="card-desc">${item.desc}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
+<section class="hero">
 
-        // --- Filter Menu Mechanism ---
-        const filterButtons = document.querySelectorAll('.tab-btn');
-        
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filterValue = btn.getAttribute('data-filter');
-                const cards = document.querySelectorAll('.menu-card');
-                
-                cards.forEach(card => {
-                    if(filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                        card.style.display = 'block';
-                        setTimeout(() => card.classList.add('show'), 10);
-                    } else {
-                        card.classList.remove('show');
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
+<div class="hero-content">
 
-        // --- Mobile Responsive Navigation Menu Toggle ---
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
+<h1>Luxury Dining Experience</h1>
 
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.firstElementChild.classList.toggle('fa-bars');
-            navToggle.firstElementChild.classList.toggle('fa-xmark');
-        });
+<p>Scan • Browse • Enjoy Delicious Food</p>
 
-        // Close navbar menu dynamically upon clicking any active link item
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                navToggle.firstElementChild.classList.add('fa-bars');
-                navToggle.firstElementChild.classList.remove('fa-xmark');
-            });
-        });
+<a href="#menu" class="btn">View Menu</a>
 
-        // --- Active Section Scroll Highlight Link Listener ---
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('#nav-menu a');
+</div>
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 120) {
-                    current = section.getAttribute('id');
-                }
-            });
+</section>
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
+<section class="search-box">
 
-        // Load functions on startup
-        document.addEventListener("DOMContentLoaded", displayMenu);
-    </script>
+<h2>Search Your Favourite Food</h2>
+
+<input type="text" placeholder="Search Food...">
+
+</section>
+
+<div class="categories">
+
+<button>All</button>
+
+<button>Veg</button>
+
+<button>Non Veg</button>
+
+<button>Chinese</button>
+
+<button>Pizza</button>
+
+<button>Burger</button>
+
+<button>Drinks</button>
+
+<button>Desserts</button>
+
+</div>
+
+<section class="menu" id="menu">
+    <div class="card">
+<img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">⭐ Bestseller</span>
+<h3>Paneer Tikka 🟢</h3>
+<p>Smoky grilled paneer served with mint chutney.</p>
+<div class="price">₹299</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1563379091339-03246963d29a?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🔥 Chef Special</span>
+<h3>Butter Chicken 🔴</h3>
+<p>Creamy tomato gravy with juicy chicken pieces.</p>
+<div class="price">₹399</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🍕 Hot</span>
+<h3>Margherita Pizza 🟢</h3>
+<p>Fresh mozzarella, basil & tomato sauce.</p>
+<div class="price">₹349</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🍔 Popular</span>
+<h3>Cheese Burger 🔴</h3>
+<p>Loaded beef/chicken burger with cheese.</p>
+<div class="price">₹249</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🥢 Chinese</span>
+<h3>Hakka Noodles 🟢</h3>
+<p>Stir-fried noodles with fresh vegetables.</p>
+<div class="price">₹229</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🥗 Healthy</span>
+<h3>Caesar Salad 🟢</h3>
+<p>Crispy lettuce with parmesan dressing.</p>
+<div class="price">₹199</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🍛 Signature</span>
+<h3>Chicken Biryani 🔴</h3>
+<p>Authentic dum biryani with raita.</p>
+<div class="price">₹379</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🍝 Italian</span>
+<h3>White Sauce Pasta 🟢</h3>
+<p>Creamy Alfredo pasta with herbs.</p>
+<div class="price">₹289</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🥤 Cold</span>
+<h3>Oreo Shake</h3>
+<p>Rich chocolate Oreo milkshake.</p>
+<div class="price">₹179</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80">
+<div class="info">
+<span class="badge">🍰 Sweet</span>
+<h3>Chocolate Cake</h3>
+<p>Soft chocolate cake with ganache.</p>
+<div class="price">₹199</div>
+</div>
+</div>
+
+</section>
+<!-- ===== Gallery ===== -->
+<section style="padding:80px 8%;background:#111;">
+<h2 style="text-align:center;color:#FFD700;font-size:40px;margin-bottom:40px;">Gallery</h2>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:15px;">
+
+<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:15px;">
+
+<img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:15px;">
+
+<img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:15px;">
+
+</div>
+
+</section>
+
+<!-- Reviews -->
+
+<section style="padding:80px 8%;">
+
+<h2 style="text-align:center;color:#FFD700;font-size:40px;margin-bottom:40px;">Customer Reviews</h2>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;">
+
+<div class="card">
+<div class="info">
+⭐⭐⭐⭐⭐
+<h3>Amazing Food</h3>
+<p>Best restaurant in the city. Delicious food and premium ambience.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="info">
+⭐⭐⭐⭐⭐
+<h3>Excellent Service</h3>
+<p>Fast service with beautiful presentation.</p>
+</div>
+</div>
+
+<div class="card">
+<div class="info">
+⭐⭐⭐⭐⭐
+<h3>Highly Recommended</h3>
+<p>Perfect place for family dinner and parties.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- Contact -->
+
+<section style="padding:80px 8%;background:#111;">
+
+<h2 style="text-align:center;color:#FFD700;margin-bottom:40px;">Contact Us</h2>
+
+<div style="text-align:center;font-size:18px;line-height:2;">
+
+📍 Tiger Cafe, Your City
+
+<br>
+
+📞 +91 9876543210
+
+<br>
+
+📧 tigercafe@email.com
+
+<br><br>
+
+<a href="https://wa.me/919876543210" class="btn">Order on WhatsApp</a>
+
+</div>
+
+</section>
+
+<!-- Google Map -->
+
+<section>
+
+<iframe
+src="https://www.google.com/maps?q=Delhi&output=embed"
+width="100%"
+height="350"
+style="border:0;">
+</iframe>
+
+</section>
+
+<footer>
+
+<h2 style="color:#FFD700;">Tiger Cafe</h2>
+
+<p>Luxury Digital QR Menu</p>
+
+<p>© 2026 All Rights Reserved.</p>
+
+</footer>
+
+<!-- Floating Buttons -->
+
+<a href="https://wa.me/919876543210" class="whatsapp">
+
+💬
+
+</a>
+
+<script>
+
+const search=document.querySelector("input");
+
+search.addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+card.style.display=
+
+card.innerText.toLowerCase().includes(value)
+
+?
+
+"block"
+
+:
+
+"none";
+
+});
+
+});
+
+</script>
+
 </body>
+
 </html>
