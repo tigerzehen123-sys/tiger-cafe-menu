@@ -1,41 +1,639 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiger Cafe Digital Menu</title>
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#f8f8f8}
-header{background:#222;color:white;padding:30px;text-align:center}
-.section{max-width:900px;margin:auto;padding:20px}
-.card{background:white;padding:15px;margin:10px 0;border-radius:10px}
-.btns a{display:inline-block;margin:5px;padding:10px 15px;background:#222;color:white;text-decoration:none;border-radius:6px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Étoile Dorée | Premium Dining</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Core Reset & Variables --- */
+        :root {
+            --gold: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-solid: #d4af37;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #bd9640; border-radius: 4px; }
+
+        /* --- Global Components --- */
+        .gold-text {
+            background: var(--gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn-gradient {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        section {
+            padding: 100px 5% 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 15px auto 0;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.80);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold-solid);
+        }
+
+        .nav-toggle {
+            display: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #home h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        /* --- About Section --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        /* --- Menu Section --- */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            transition: var(--transition);
+            display: none; /* Controlled by JS */
+        }
+
+        .menu-card.show {
+            display: block;
+            animation: scaleUp 0.4s ease forwards;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .card-img-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .card-price {
+            color: var(--gold-solid);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* --- Reviews Section --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        .stars {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        .review-text {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .reviewer-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- Opening Hours & Map Section --- */
+        .info-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+        }
+        .hours-box {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .map-box iframe {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #050505;
+            border-top: 1px solid var(--glass-border);
+            padding: 40px 5%;
+            text-align: center;
+        }
+        .footer-socials {
+            margin-bottom: 20px;
+        }
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+        .footer-socials a:hover { color: var(--gold-solid); }
+        footer p { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- Floating Action Buttons --- */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2000;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+
+        .float-btn:hover { transform: scale(1.1); }
+        .float-whatsapp { background-color: #25D366; }
+        .float-call { background-color: #0076ff; }
+
+        /* --- Keyframe Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            #home h1 { font-size: 3rem; }
+            .about-container, .info-container { grid-template-columns: 1fr; }
+            .about-img { height: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(10,10,10,0.98);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: var(--transition);
+            }
+            nav ul.active { left: 0; }
+            .nav-toggle { display: block; }
+            section { padding-top: 80px; }
+        }
+    </style>
 </head>
 <body>
-<header>
-<h1>Tiger Cafe</h1>
-<p>Scan QR & View Menu</p>
-</header>
 
-<div class="section">
-<h2>Starters</h2>
-<div class="card">Paneer Tikka - ₹220</div>
-<div class="card">Spring Roll - ₹180</div>
+    <header>
+        <a href="#home" class="logo gold-text">L'Étoile Dorée</a>
+        <div class="nav-toggle" id="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#visit">Visit Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<h2>Main Course</h2>
-<div class="card">Butter Chicken - ₹350</div>
-<div class="card">Dal Makhani - ₹250</div>
+    <section id="home">
+        <h1 class="gold-text">An Elegant Taste of Luxury</h1>
+        <p>Crafting exceptional Culinary experiences</p>
+        <a href="#menu" class="btn-gradient">Explore Our Menu <i class="fas fa-chevron-right"></i></a>
+    </section>
 
-<h2>Drinks</h2>
-<div class="card">Cold Coffee - ₹120</div>
-<div class="card">Fresh Lime Soda - ₹80</div>
+    <section id="about">
+        <div class="about-container">
+            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80" alt="Ambience" class="about-img">
+            <div class="about-text">
+                <h2 class="section-title gold-text" style="text-align: left; margin-bottom: 20px;">Our Story</h2>
+                <p>Founded with a passion for exquisite gastronomy, L'Étoile Dorée seamlessly merges traditional cooking methods with contemporary luxury aesthetic flavors.</p>
+                <p>Every single ingredient is meticulously sourced from premium regional producers, guaranteeing unparalleled freshness and taste on every single plate we serve.</p>
+                <a href="#visit" class="btn-gradient"><i class="fas fa-map-marker-alt"></i> Find Our Location</a>
+            </div>
+        </div>
+    </section>
 
-<div class="btns">
-<a href="tel:+919876543210">Call</a>
-<a href="https://wa.me/919876543210">WhatsApp</a>
-<a href="https://maps.google.com">Maps</a>
-</div>
-</div>
+    <section id="menu">
+        <h2 class="section-title gold-text">The Menu</h2>
+        
+        <div class="menu-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="starters">Starters</button>
+            <button class="tab-btn" data-filter="maincourse">Main Course</button>
+            <button class="tab-btn" data-filter="chinese">Chinese</button>
+            <button class="tab-btn" data-filter="pizza">Pizza</button>
+            <button class="tab-btn" data-filter="burgers">Burgers</button>
+            <button class="tab-btn" data-filter="drinks">Drinks</button>
+            <button class="tab-btn" data-filter="desserts">Desserts</button>
+        </div>
+
+        <div class="menu-grid" id="menu-grid">
+            </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title gold-text">Guest Reviews</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"The truffle main course was absolutely stellar. A complete masterclass in dining luxury."</p>
+                <p class="reviewer-name">- Sophia V.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"Stunning ambiance, exceptional cocktails, and the glassmorphism aesthetic of the menu translates completely to reality."</p>
+                <p class="reviewer-name">- Ethan R.</p>
+            </div>
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">"The finest dessert platter I have ever enjoyed. Highly recommend the golden leaf presentation."</p>
+                <p class="reviewer-name">- Liam M.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visit">
+        <h2 class="section-title gold-text">Timing & Location</h2>
+        <div class="info-container">
+            <div class="hours-box">
+                <h3 class="gold-text" style="font-size: 1.5rem; margin-bottom: 20px;">Opening Hours</h3>
+                <div class="hours-row"><span>Monday - Friday</span><span>12:00 PM - 11:00 PM</span></div>
+                <div class="hours-row"><span>Saturday</span><span>11:00 AM - 12:00 AM</span></div>
+                <div class="hours-row"><span>Sunday</span><span>11:00 AM - 10:00 PM</span></div>
+            </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422934131235!2d-73.98731968459392!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2585f5517b619%3A0x8aa8d041ad40428e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2026 L'Étoile Dorée. Designed with luxury in mind.</p>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="https://wa.me/1234567890" target="_blank" class="float-btn float-whatsapp" title="WhatsApp Us">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+1234567890" class="float-btn float-call" title="Call Us Now">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <script>
+        // --- Food Menu Data ---
+        const menuItems = [
+            { id: 1, title: "Truffle Arancini", category: "starters", price: "$18", desc: "Crispy risotto balls infused with black truffle and rich melted mozzarella.", img: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, title: "Wagyu Ribeye Steak", category: "maincourse", price: "$75", desc: "A5 Grade Wagyu accompanied by smoked herb butter and asparagus roasted to perfection.", img: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&w=500&q=80" },
+            { id: 3, title: "Imperial Dim Sum", category: "chinese", price: "$22", desc: "Delicately handcrafted translucent dumplings stuffed with fresh lobster meat.", img: "https://images.unsplash.com/photo-1496116211217-41af89634433?auto=format&fit=crop&w=500&q=80" },
+            { id: 4, title: "The Gold Leaf Pizza", category: "pizza", price: "$32", desc: "Prosciutto di Parma, fresh burrata, wild figs, finished beautifully with 24k gold leaf flakes.", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" },
+            { id: 5, title: "Signature Truffle Burger", category: "burgers", price: "$26", desc: "Dry-aged custom beef blend, melted brie cheese, and house-made truffle aioli paste.", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" },
+            { id: 6, title: "Smoked Old Fashioned", category: "drinks", price: "$19", desc: "Premium bourbon, hand-pressed bitters, infused under hickory wood smoke plumes.", img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=80" },
+            { id: 7, title: "Deconstructed Tiramisu", category: "desserts", price: "$16", desc: "Luxurious espresso-soaked ladyfingers inside rich whipped sweet mascarpone foam.", img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=80" }
+        ];
+
+        // --- Generate Food Cards Dynamically ---
+        const menuGrid = document.getElementById('menu-grid');
+        
+        function displayMenu() {
+            menuGrid.innerHTML = menuItems.map(item => `
+                <div class="menu-card show" data-category="${item.category}">
+                    <div class="card-img-container">
+                        <img src="${item.img}" alt="${item.title}" class="card-img" loading="lazy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h3 class="card-title">${item.title}</h3>
+                            <span class="card-price">${item.price}</span>
+                        </div>
+                        <p class="card-desc">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Filter Menu Mechanism ---
+        const filterButtons = document.querySelectorAll('.tab-btn');
+        
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.menu-card');
+                
+                cards.forEach(card => {
+                    if(filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.classList.add('show'), 10);
+                    } else {
+                        card.classList.remove('show');
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Mobile Responsive Navigation Menu Toggle ---
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.firstElementChild.classList.toggle('fa-bars');
+            navToggle.firstElementChild.classList.toggle('fa-xmark');
+        });
+
+        // Close navbar menu dynamically upon clicking any active link item
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.firstElementChild.classList.add('fa-bars');
+                navToggle.firstElementChild.classList.remove('fa-xmark');
+            });
+        });
+
+        // --- Active Section Scroll Highlight Link Listener ---
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('#nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Load functions on startup
+        document.addEventListener("DOMContentLoaded", displayMenu);
+    </script>
 </body>
 </html>
